@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Reading = require("../../models/Reading");
 
-// Get temps
+// Get temperature readings
 router.get("/", async (req, res) => {
   try {
     let readings = await Reading.find()
@@ -23,17 +23,25 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add temps
+// Add temperature reading
+router.post("/", async (req, res) => {
+  try {
+    let reading = new Reading({
+      temperature: req.body.temperature,
+      humidity: req.body.humidity,
+      date: new Date()
+    });
+
+    await reading.save(function(err, res) {
+      console.log(res);
+    });
+
+    res.status(201).send();
+  } catch (e) {
+    res.status(500).json(e.message);
+  }
+});
 
 // Delete temps
-
-async function loadTempsCollection() {
-  const client = await mongoose.connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-
-  return client.db("temperature").collection("readings");
-}
 
 module.exports = router;
