@@ -4,14 +4,17 @@
   "description": "Full stack vue and express app",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "author": "Dmitriy Klyuzov",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmitriyklyuzov/temperature-dashboard.git"
+  },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
+    "config": "^3.2.3",
     "express": "^4.17.1",
     "mongodb": "^3.3.2"
   },
