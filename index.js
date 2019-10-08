@@ -12,9 +12,10 @@ connectDb();
 app.use(express.json({ extended: false }));
 // app.use(cors);
 
-const temps = require("./routes/api/temps");
+const readings = require("./routes/api/readings");
 
-app.use("/api/temps", temps);
+app.use("/api/temps", readings);
+app.use("/api/readings", readings);
 
 const PORT = process.env.PORT || 5000;
 
