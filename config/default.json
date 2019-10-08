@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://apiUser:<password>@cluster0-cxdwd.mongodb.net/admin?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://apiUser:<password>@cluster0-cxdwd.mongodb.net/temperature?retryWrites=true&w=majority",
   "baseUrl": "http://localhost:5000"
 }
