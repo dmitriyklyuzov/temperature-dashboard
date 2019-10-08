@@ -5,14 +5,13 @@ const Reading = require("../../models/Reading");
 
 // Get temps
 router.get("/", async (req, res) => {
-  console.log("get method called!");
   try {
     let readings = await Reading.find()
       .sort({ date: "-1" })
       .limit(20);
 
     if (readings) {
-      console.log("records found!");
+      console.log("records found");
       return res.send(readings);
     } else {
       return res.status(500).json("Could not read data");
