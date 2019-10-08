@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const readingSchema = new mongoose.Schema(
   {
-    date: String,
+    date: { type: String, default: Date.now() },
     temperature: String,
     humidity: String
   },
