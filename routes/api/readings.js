@@ -7,10 +7,6 @@ const Reading = require("../../models/Reading");
 // Get temperature readings
 router.get("/", async (req, res) => {
   try {
-    // let readings = await Reading.find({
-    //   _id: new mongoose.Types.ObjectId("5d9c0c11fab78811c6912639")
-    // }).sort({ date: "-1" });
-
     let readings = await Reading.find()
       .sort({ date: "-1" })
       .limit(20);
@@ -34,7 +30,7 @@ router.post("/", async (req, res) => {
     let reading = new Reading({
       temperature: req.body.temperature,
       humidity: req.body.humidity,
-      date: new Date()
+      date: new Date().toISOString()
     });
 
     await reading.save(function(err, res) {
