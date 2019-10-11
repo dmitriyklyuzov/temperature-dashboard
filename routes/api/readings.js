@@ -7,6 +7,10 @@ const Reading = require("../../models/Reading");
 // Get temperature readings
 router.get("/", async (req, res) => {
   try {
+    // let readings = await Reading.find({
+    //   _id: new mongoose.Types.ObjectId("5d9c0c11fab78811c6912639")
+    // }).sort({ date: "-1" });
+
     let readings = await Reading.find()
       .sort({ date: "-1" })
       .limit(20);
@@ -48,32 +52,13 @@ router.delete("/:id", async (req, res) => {
   try {
     console.log(`Trying to delete id ${req.params.id}`);
 
-    let reading = new Reading();
-
-    console.log("instantiated reading");
-
-    let id = new mongoose.Types.ObjectId(req.params.id);
-
-    console.log("ObjectId is");
-    console.log(id);
-
-    // try deleting by id
-    // await reading.deleteOne({
-    //   _id: new mongoose.Types.ObjectId(req.params.id)
-    // });
-
-    await reading.deleteOne(
-      { _id: new mongoose.Types.ObjectId(req.params.id) },
-      function(err) {
-        if (!err) {
-          // console.log("Successfully deleted");
-          console.log('No error');
-          console.log(res);
-        } else {
-          console.log("Err :(!");
-        }
+    Reading.findByIdAndRemove(req.params.id, function(err) {
+      if (!err) {
+        console.log("No error");
+      } else {
+        console.log("Err :(!");
       }
-    );
+    });
 
     res.status(200).send();
   } catch (e) {
