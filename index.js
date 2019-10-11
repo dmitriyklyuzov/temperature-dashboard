@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDb = require("./config/db");
-// const cors = require("cors");
+const cors = require("cors");
 
 // initialize app
 const app = express();
@@ -10,7 +10,7 @@ connectDb();
 
 // middleware
 app.use(express.json({ extended: false }));
-// app.use(cors);
+app.use(cors());
 
 const readings = require("./routes/api/readings");
 
